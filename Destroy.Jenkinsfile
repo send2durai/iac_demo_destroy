@@ -16,6 +16,20 @@ pipeline {
             }
         }
 
+        stage("terraform validate") {
+            steps {
+                echo "Going to validate the code written in HCL"
+                sh 'terraform validate'
+            }
+        }
+
+        stage("terraform plan") {
+            steps {
+                echo "Going to show us, what it's going to do"
+                sh 'terraform plan'
+            }
+        }
+
         stage ("terraform destroy") {
             steps {
                 echo "This where the Jenkins admins need to select, whether he/she wants to destroy resources in AWS"
